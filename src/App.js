@@ -94,8 +94,13 @@ class App extends Component {
 
   deleteVisitCountry = id => {
     const {countriesList} = this.state
-    const filteredCountries = countriesList.filter(each => each.id !== id)
-    this.setState({countriesList: filteredCountries})
+    const updatedCountriesList = countriesList.map(eachCountry => {
+      if (eachCountry.id === id) {
+        return {...eachCountry, isVisited: false}
+      }
+      return eachCountry
+    })
+    this.setState({countriesList: updatedCountriesList})
   }
 
   render() {
